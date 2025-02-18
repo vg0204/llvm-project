@@ -448,10 +448,21 @@ void MachineRegisterInfo::clearKillFlags(Register Reg) const {
     MO.setIsKill(false);
 }
 
-bool MachineRegisterInfo::isLiveIn(Register Reg) const {
-  for (const std::pair<MCRegister, Register> &LI : liveins())
+bool MachineRegisterInfo::isLiveIn(Register Reg, bool CheckForSubreg) const {
+  for (const std::pair<MCRegister, Register> &LI : liveins()) {
     if ((Register)LI.first == Reg || LI.second == Reg)
       return true;
+
+    if (CheckForSubreg) {
+      MCRegister PhysReg = LI.first;
+      if (!PhysReg.isValid())
+        continue;
+
+      for (MCPhysReg Subreg : getTargetRegisterInfo()->subregs(PhysReg))
+        if (Subreg == Reg)
+          return true;
+    }
+  }
   return false;
 }
 

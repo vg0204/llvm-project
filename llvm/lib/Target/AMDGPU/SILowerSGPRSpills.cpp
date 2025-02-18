@@ -128,7 +128,7 @@ static void insertCSRSaves(MachineBasicBlock &SaveBlock,
       // incoming register value, so don't kill at the spill point. This happens
       // since we pass some special inputs (workgroup IDs) in the callee saved
       // range.
-      const bool IsLiveIn = MRI.isLiveIn(Reg);
+      const bool IsLiveIn = MRI.isLiveIn(Reg, true);
       TII.storeRegToStackSlot(SaveBlock, I, Reg, !IsLiveIn, CS.getFrameIdx(),
                               RC, TRI, Register());
 
