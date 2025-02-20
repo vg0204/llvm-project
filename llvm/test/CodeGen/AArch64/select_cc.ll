@@ -5,8 +5,8 @@ define i64 @select_ogt_float(float %a, float %b) {
 ; CHECK-LABEL: select_ogt_float:
 ; CHECK:       // %bb.0: // %entry
 ; CHECK-NEXT:    fcmp s0, s1
-; CHECK-NEXT:    cset w8, gt
-; CHECK-NEXT:    ubfiz x0, x8, #2, #32
+; CHECK-NEXT:    mov w8, #4 // =0x4
+; CHECK-NEXT:    csel x0, x8, xzr, gt
 ; CHECK-NEXT:    ret
 entry:
   %cc = fcmp ogt float %a, %b
@@ -18,8 +18,8 @@ define i64 @select_ule_float_inverse(float %a, float %b) {
 ; CHECK-LABEL: select_ule_float_inverse:
 ; CHECK:       // %bb.0: // %entry
 ; CHECK-NEXT:    fcmp s0, s1
-; CHECK-NEXT:    cset w8, gt
-; CHECK-NEXT:    ubfiz x0, x8, #2, #32
+; CHECK-NEXT:    mov w8, #4 // =0x4
+; CHECK-NEXT:    csel x0, xzr, x8, le
 ; CHECK-NEXT:    ret
 entry:
   %cc = fcmp ule float %a, %b
@@ -30,9 +30,9 @@ entry:
 define i64 @select_eq_i32(i32 %a, i32 %b) {
 ; CHECK-LABEL: select_eq_i32:
 ; CHECK:       // %bb.0: // %entry
+; CHECK-NEXT:    mov w8, #4 // =0x4
 ; CHECK-NEXT:    cmp w0, w1
-; CHECK-NEXT:    cset w8, eq
-; CHECK-NEXT:    ubfiz x0, x8, #2, #32
+; CHECK-NEXT:    csel x0, x8, xzr, eq
 ; CHECK-NEXT:    ret
 entry:
   %cc = icmp eq i32 %a, %b
@@ -43,9 +43,9 @@ entry:
 define i64 @select_ne_i32_inverse(i32 %a, i32 %b) {
 ; CHECK-LABEL: select_ne_i32_inverse:
 ; CHECK:       // %bb.0: // %entry
+; CHECK-NEXT:    mov w8, #4 // =0x4
 ; CHECK-NEXT:    cmp w0, w1
-; CHECK-NEXT:    cset w8, eq
-; CHECK-NEXT:    ubfiz x0, x8, #2, #32
+; CHECK-NEXT:    csel x0, xzr, x8, ne
 ; CHECK-NEXT:    ret
 entry:
   %cc = icmp ne i32 %a, %b
