@@ -430,11 +430,11 @@ define amdgpu_kernel void @s_fneg_v2bf16_nonload(ptr addrspace(1) %out) #0 {
 ; CI-NEXT:    s_lshl_b32 s2, s2, 16
 ; CI-NEXT:    v_lshrrev_b32_e32 v0, 16, v0
 ; CI-NEXT:    v_mul_f32_e64 v1, -1.0, s2
+; CI-NEXT:    s_mov_b32 flat_scratch_lo, s13
+; CI-NEXT:    s_lshr_b32 flat_scratch_hi, s12, 8
 ; CI-NEXT:    v_alignbit_b32 v2, v0, v1, 16
 ; CI-NEXT:    s_waitcnt lgkmcnt(0)
 ; CI-NEXT:    v_mov_b32_e32 v0, s0
-; CI-NEXT:    s_mov_b32 flat_scratch_lo, s13
-; CI-NEXT:    s_lshr_b32 flat_scratch_hi, s12, 8
 ; CI-NEXT:    v_mov_b32_e32 v1, s1
 ; CI-NEXT:    flat_store_dword v[0:1], v2
 ; CI-NEXT:    s_endpgm
@@ -448,9 +448,9 @@ define amdgpu_kernel void @s_fneg_v2bf16_nonload(ptr addrspace(1) %out) #0 {
 ; GFX8-NEXT:    ;;#ASMEND
 ; GFX8-NEXT:    s_xor_b32 s2, s2, 0x80008000
 ; GFX8-NEXT:    s_mov_b32 flat_scratch_lo, s13
+; GFX8-NEXT:    s_lshr_b32 flat_scratch_hi, s12, 8
 ; GFX8-NEXT:    s_waitcnt lgkmcnt(0)
 ; GFX8-NEXT:    v_mov_b32_e32 v0, s0
-; GFX8-NEXT:    s_lshr_b32 flat_scratch_hi, s12, 8
 ; GFX8-NEXT:    v_mov_b32_e32 v1, s1
 ; GFX8-NEXT:    v_mov_b32_e32 v2, s2
 ; GFX8-NEXT:    flat_store_dword v[0:1], v2

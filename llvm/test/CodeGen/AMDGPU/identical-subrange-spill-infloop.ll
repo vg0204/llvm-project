@@ -138,11 +138,11 @@ define void @main(i1 %arg) #0 {
 ; CHECK-NEXT:    v_readlane_b32 s40, v6, 4
 ; CHECK-NEXT:    v_readlane_b32 s41, v6, 5
 ; CHECK-NEXT:    image_sample_lz v0, v[2:3], s[44:51], s[24:27] dmask:0x1
+; CHECK-NEXT:    v_mov_b32_e32 v2, 0
 ; CHECK-NEXT:    v_readlane_b32 s42, v6, 6
 ; CHECK-NEXT:    v_readlane_b32 s43, v6, 7
-; CHECK-NEXT:    v_mov_b32_e32 v2, 0
-; CHECK-NEXT:    s_mov_b64 s[42:43], s[14:15]
 ; CHECK-NEXT:    v_mov_b32_e32 v3, v2
+; CHECK-NEXT:    s_mov_b64 s[42:43], s[14:15]
 ; CHECK-NEXT:    s_mov_b64 s[40:41], s[12:13]
 ; CHECK-NEXT:    s_mov_b64 s[38:39], s[10:11]
 ; CHECK-NEXT:    s_mov_b64 s[36:37], s[8:9]
@@ -158,10 +158,10 @@ define void @main(i1 %arg) #0 {
 ; CHECK-NEXT:    s_mov_b32 s8, 0
 ; CHECK-NEXT:    s_mov_b32 s12, s8
 ; CHECK-NEXT:    s_mov_b32 s13, s8
-; CHECK-NEXT:    v_mov_b32_e32 v1, s12
 ; CHECK-NEXT:    s_mov_b32 s9, s8
 ; CHECK-NEXT:    s_mov_b32 s10, s8
 ; CHECK-NEXT:    s_mov_b32 s11, s8
+; CHECK-NEXT:    v_mov_b32_e32 v1, s12
 ; CHECK-NEXT:    v_mov_b32_e32 v2, s13
 ; CHECK-NEXT:    s_waitcnt lgkmcnt(0)
 ; CHECK-NEXT:    image_sample_lz v3, v[1:2], s[36:43], s[8:11] dmask:0x1

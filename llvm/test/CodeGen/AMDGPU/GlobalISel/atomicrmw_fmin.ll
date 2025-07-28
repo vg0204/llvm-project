@@ -1822,12 +1822,12 @@ define double @buffer_fat_ptr_agent_atomic_fmin_ret_f64__amdgpu_no_fine_grained_
 ; GFX12-NEXT:    s_wait_loadcnt 0x0
 ; GFX12-NEXT:    v_dual_mov_b32 v10, v1 :: v_dual_mov_b32 v9, v0
 ; GFX12-NEXT:    s_wait_storecnt 0x0
-; GFX12-NEXT:    s_delay_alu instid0(VALU_DEP_1) | instskip(NEXT) | instid1(VALU_DEP_1)
+; GFX12-NEXT:    s_delay_alu instid0(VALU_DEP_1) | instskip(SKIP_1) | instid1(VALU_DEP_1)
+; GFX12-NEXT:    v_dual_mov_b32 v3, v10 :: v_dual_mov_b32 v2, v9
 ; GFX12-NEXT:    v_max_num_f64_e32 v[0:1], v[9:10], v[9:10]
 ; GFX12-NEXT:    v_min_num_f64_e32 v[7:8], v[0:1], v[4:5]
 ; GFX12-NEXT:    s_delay_alu instid0(VALU_DEP_1)
 ; GFX12-NEXT:    v_dual_mov_b32 v0, v7 :: v_dual_mov_b32 v1, v8
-; GFX12-NEXT:    v_dual_mov_b32 v2, v9 :: v_dual_mov_b32 v3, v10
 ; GFX12-NEXT:    buffer_atomic_cmpswap_b64 v[0:3], v6, s[0:3], null offen th:TH_ATOMIC_RETURN
 ; GFX12-NEXT:    s_wait_loadcnt 0x0
 ; GFX12-NEXT:    global_inv scope:SCOPE_DEV
@@ -1864,12 +1864,12 @@ define double @buffer_fat_ptr_agent_atomic_fmin_ret_f64__amdgpu_no_fine_grained_
 ; GFX11-NEXT:    s_waitcnt vmcnt(0)
 ; GFX11-NEXT:    v_dual_mov_b32 v10, v1 :: v_dual_mov_b32 v9, v0
 ; GFX11-NEXT:    s_waitcnt_vscnt null, 0x0
-; GFX11-NEXT:    s_delay_alu instid0(VALU_DEP_1) | instskip(NEXT) | instid1(VALU_DEP_1)
+; GFX11-NEXT:    s_delay_alu instid0(VALU_DEP_1) | instskip(SKIP_1) | instid1(VALU_DEP_1)
+; GFX11-NEXT:    v_dual_mov_b32 v3, v10 :: v_dual_mov_b32 v2, v9
 ; GFX11-NEXT:    v_max_f64 v[0:1], v[9:10], v[9:10]
 ; GFX11-NEXT:    v_min_f64 v[7:8], v[0:1], v[4:5]
 ; GFX11-NEXT:    s_delay_alu instid0(VALU_DEP_1)
 ; GFX11-NEXT:    v_dual_mov_b32 v0, v7 :: v_dual_mov_b32 v1, v8
-; GFX11-NEXT:    v_dual_mov_b32 v2, v9 :: v_dual_mov_b32 v3, v10
 ; GFX11-NEXT:    buffer_atomic_cmpswap_b64 v[0:3], v6, s[0:3], 0 offen glc
 ; GFX11-NEXT:    s_waitcnt vmcnt(0)
 ; GFX11-NEXT:    buffer_gl1_inv
@@ -1918,11 +1918,11 @@ define double @buffer_fat_ptr_agent_atomic_fmin_ret_f64__amdgpu_no_fine_grained_
 ; GFX908-NEXT:    v_mov_b32_e32 v10, v1
 ; GFX908-NEXT:    v_mov_b32_e32 v9, v0
 ; GFX908-NEXT:    v_max_f64 v[0:1], v[9:10], v[9:10]
+; GFX908-NEXT:    v_mov_b32_e32 v2, v9
+; GFX908-NEXT:    v_mov_b32_e32 v3, v10
 ; GFX908-NEXT:    v_min_f64 v[7:8], v[0:1], v[4:5]
 ; GFX908-NEXT:    v_mov_b32_e32 v0, v7
 ; GFX908-NEXT:    v_mov_b32_e32 v1, v8
-; GFX908-NEXT:    v_mov_b32_e32 v2, v9
-; GFX908-NEXT:    v_mov_b32_e32 v3, v10
 ; GFX908-NEXT:    buffer_atomic_cmpswap_x2 v[0:3], v6, s[16:19], 0 offen glc
 ; GFX908-NEXT:    s_waitcnt vmcnt(0)
 ; GFX908-NEXT:    buffer_wbinvl1
@@ -1949,11 +1949,11 @@ define double @buffer_fat_ptr_agent_atomic_fmin_ret_f64__amdgpu_no_fine_grained_
 ; GFX8-NEXT:    v_mov_b32_e32 v10, v1
 ; GFX8-NEXT:    v_mov_b32_e32 v9, v0
 ; GFX8-NEXT:    v_max_f64 v[0:1], v[9:10], v[9:10]
+; GFX8-NEXT:    v_mov_b32_e32 v2, v9
+; GFX8-NEXT:    v_mov_b32_e32 v3, v10
 ; GFX8-NEXT:    v_min_f64 v[7:8], v[0:1], v[4:5]
 ; GFX8-NEXT:    v_mov_b32_e32 v0, v7
 ; GFX8-NEXT:    v_mov_b32_e32 v1, v8
-; GFX8-NEXT:    v_mov_b32_e32 v2, v9
-; GFX8-NEXT:    v_mov_b32_e32 v3, v10
 ; GFX8-NEXT:    buffer_atomic_cmpswap_x2 v[0:3], v6, s[16:19], 0 offen glc
 ; GFX8-NEXT:    s_waitcnt vmcnt(0)
 ; GFX8-NEXT:    buffer_wbinvl1
@@ -1993,10 +1993,10 @@ define void @buffer_fat_ptr_agent_atomic_fmin_noret_f64__amdgpu_no_fine_grained_
 ; GFX12-NEXT:    ; =>This Inner Loop Header: Depth=1
 ; GFX12-NEXT:    s_wait_loadcnt 0x0
 ; GFX12-NEXT:    v_max_num_f64_e32 v[0:1], v[2:3], v[2:3]
-; GFX12-NEXT:    s_wait_storecnt 0x0
-; GFX12-NEXT:    s_delay_alu instid0(VALU_DEP_1) | instskip(SKIP_1) | instid1(VALU_DEP_2)
-; GFX12-NEXT:    v_min_num_f64_e32 v[0:1], v[0:1], v[4:5]
 ; GFX12-NEXT:    v_dual_mov_b32 v10, v3 :: v_dual_mov_b32 v9, v2
+; GFX12-NEXT:    s_wait_storecnt 0x0
+; GFX12-NEXT:    s_delay_alu instid0(VALU_DEP_2) | instskip(NEXT) | instid1(VALU_DEP_1)
+; GFX12-NEXT:    v_min_num_f64_e32 v[0:1], v[0:1], v[4:5]
 ; GFX12-NEXT:    v_dual_mov_b32 v8, v1 :: v_dual_mov_b32 v7, v0
 ; GFX12-NEXT:    buffer_atomic_cmpswap_b64 v[7:10], v6, s[0:3], null offen th:TH_ATOMIC_RETURN
 ; GFX12-NEXT:    s_wait_loadcnt 0x0
@@ -2033,10 +2033,10 @@ define void @buffer_fat_ptr_agent_atomic_fmin_noret_f64__amdgpu_no_fine_grained_
 ; GFX11-NEXT:    ; =>This Inner Loop Header: Depth=1
 ; GFX11-NEXT:    s_waitcnt vmcnt(0)
 ; GFX11-NEXT:    v_max_f64 v[0:1], v[2:3], v[2:3]
-; GFX11-NEXT:    s_waitcnt_vscnt null, 0x0
-; GFX11-NEXT:    s_delay_alu instid0(VALU_DEP_1) | instskip(SKIP_1) | instid1(VALU_DEP_2)
-; GFX11-NEXT:    v_min_f64 v[0:1], v[0:1], v[4:5]
 ; GFX11-NEXT:    v_dual_mov_b32 v10, v3 :: v_dual_mov_b32 v9, v2
+; GFX11-NEXT:    s_waitcnt_vscnt null, 0x0
+; GFX11-NEXT:    s_delay_alu instid0(VALU_DEP_2) | instskip(NEXT) | instid1(VALU_DEP_1)
+; GFX11-NEXT:    v_min_f64 v[0:1], v[0:1], v[4:5]
 ; GFX11-NEXT:    v_dual_mov_b32 v8, v1 :: v_dual_mov_b32 v7, v0
 ; GFX11-NEXT:    buffer_atomic_cmpswap_b64 v[7:10], v6, s[0:3], 0 offen glc
 ; GFX11-NEXT:    s_waitcnt vmcnt(0)
@@ -2083,9 +2083,9 @@ define void @buffer_fat_ptr_agent_atomic_fmin_noret_f64__amdgpu_no_fine_grained_
 ; GFX908-NEXT:    ; =>This Inner Loop Header: Depth=1
 ; GFX908-NEXT:    s_waitcnt vmcnt(0)
 ; GFX908-NEXT:    v_max_f64 v[0:1], v[2:3], v[2:3]
-; GFX908-NEXT:    v_min_f64 v[0:1], v[0:1], v[4:5]
 ; GFX908-NEXT:    v_mov_b32_e32 v10, v3
 ; GFX908-NEXT:    v_mov_b32_e32 v9, v2
+; GFX908-NEXT:    v_min_f64 v[0:1], v[0:1], v[4:5]
 ; GFX908-NEXT:    v_mov_b32_e32 v8, v1
 ; GFX908-NEXT:    v_mov_b32_e32 v7, v0
 ; GFX908-NEXT:    buffer_atomic_cmpswap_x2 v[7:10], v6, s[16:19], 0 offen glc
@@ -2112,9 +2112,9 @@ define void @buffer_fat_ptr_agent_atomic_fmin_noret_f64__amdgpu_no_fine_grained_
 ; GFX8-NEXT:    ; =>This Inner Loop Header: Depth=1
 ; GFX8-NEXT:    s_waitcnt vmcnt(0)
 ; GFX8-NEXT:    v_max_f64 v[0:1], v[2:3], v[2:3]
-; GFX8-NEXT:    v_min_f64 v[0:1], v[0:1], v[4:5]
 ; GFX8-NEXT:    v_mov_b32_e32 v10, v3
 ; GFX8-NEXT:    v_mov_b32_e32 v9, v2
+; GFX8-NEXT:    v_min_f64 v[0:1], v[0:1], v[4:5]
 ; GFX8-NEXT:    v_mov_b32_e32 v8, v1
 ; GFX8-NEXT:    v_mov_b32_e32 v7, v0
 ; GFX8-NEXT:    buffer_atomic_cmpswap_x2 v[7:10], v6, s[16:19], 0 offen glc

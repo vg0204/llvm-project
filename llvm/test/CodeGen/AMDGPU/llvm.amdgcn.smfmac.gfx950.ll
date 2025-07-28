@@ -506,7 +506,6 @@ define <16 x float> @test_smfmac_f32_32x32x32_f16__sgpr(<8 x half> inreg %arg0, 
 ; GISEL-NEXT:    v_mov_b32_e32 v18, v7
 ; GISEL-NEXT:    v_mov_b32_e32 v19, v8
 ; GISEL-NEXT:    v_mov_b32_e32 v20, v9
-; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b32_e32 v21, v10
 ; GISEL-NEXT:    v_mov_b32_e32 v0, s24
 ; GISEL-NEXT:    v_mov_b32_e32 v1, s25
@@ -514,6 +513,7 @@ define <16 x float> @test_smfmac_f32_32x32x32_f16__sgpr(<8 x half> inreg %arg0, 
 ; GISEL-NEXT:    v_mov_b32_e32 v3, s27
 ; GISEL-NEXT:    v_mov_b32_e32 v4, s28
 ; GISEL-NEXT:    v_mov_b32_e32 v5, s29
+; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[20:21]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[16:17]
@@ -1073,8 +1073,8 @@ define amdgpu_kernel void @test_smfmac_i32_32x32x64_i8__vgpr(ptr addrspace(1) %a
 ; GISEL-NEXT:    s_waitcnt lgkmcnt(0)
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[10:11]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[8:9]
-; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b32_e32 v28, s2
+; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[20:21], s[16:17]
 ; GISEL-NEXT:    v_mov_b64_e32 v[18:19], s[14:15]
 ; GISEL-NEXT:    v_mov_b64_e32 v[16:17], s[12:13]
@@ -1356,7 +1356,6 @@ define <16 x i32> @test_smfmac_i32_32x32x64_i8__sgpr(<4 x i32> inreg %arg0, <8 x
 ; GISEL-NEXT:    v_mov_b32_e32 v18, v7
 ; GISEL-NEXT:    v_mov_b32_e32 v19, v8
 ; GISEL-NEXT:    v_mov_b32_e32 v20, v9
-; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b32_e32 v21, v10
 ; GISEL-NEXT:    v_mov_b32_e32 v0, s24
 ; GISEL-NEXT:    v_mov_b32_e32 v1, s25
@@ -1364,6 +1363,7 @@ define <16 x i32> @test_smfmac_i32_32x32x64_i8__sgpr(<4 x i32> inreg %arg0, <8 x
 ; GISEL-NEXT:    v_mov_b32_e32 v3, s27
 ; GISEL-NEXT:    v_mov_b32_e32 v4, s28
 ; GISEL-NEXT:    v_mov_b32_e32 v5, s29
+; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[20:21]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[16:17]
@@ -2122,8 +2122,8 @@ define amdgpu_kernel void @test_smfmac_f32_32x32x64_bf8_bf8__vgpr(ptr addrspace(
 ; GISEL-NEXT:    s_waitcnt lgkmcnt(0)
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[10:11]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[8:9]
-; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b32_e32 v28, s2
+; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[20:21], s[16:17]
 ; GISEL-NEXT:    v_mov_b64_e32 v[18:19], s[14:15]
 ; GISEL-NEXT:    v_mov_b64_e32 v[16:17], s[12:13]
@@ -2405,7 +2405,6 @@ define <16 x float> @test_smfmac_f32_32x32x64_bf8_bf8__sgpr(<4 x i32> inreg %arg
 ; GISEL-NEXT:    v_mov_b32_e32 v18, v7
 ; GISEL-NEXT:    v_mov_b32_e32 v19, v8
 ; GISEL-NEXT:    v_mov_b32_e32 v20, v9
-; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b32_e32 v21, v10
 ; GISEL-NEXT:    v_mov_b32_e32 v0, s24
 ; GISEL-NEXT:    v_mov_b32_e32 v1, s25
@@ -2413,6 +2412,7 @@ define <16 x float> @test_smfmac_f32_32x32x64_bf8_bf8__sgpr(<4 x i32> inreg %arg
 ; GISEL-NEXT:    v_mov_b32_e32 v3, s27
 ; GISEL-NEXT:    v_mov_b32_e32 v4, s28
 ; GISEL-NEXT:    v_mov_b32_e32 v5, s29
+; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[20:21]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[16:17]
@@ -2495,8 +2495,8 @@ define amdgpu_kernel void @test_smfmac_f32_32x32x64_bf8_fp8__vgpr(ptr addrspace(
 ; GISEL-NEXT:    s_waitcnt lgkmcnt(0)
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[10:11]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[8:9]
-; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b32_e32 v28, s2
+; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[20:21], s[16:17]
 ; GISEL-NEXT:    v_mov_b64_e32 v[18:19], s[14:15]
 ; GISEL-NEXT:    v_mov_b64_e32 v[16:17], s[12:13]
@@ -2778,7 +2778,6 @@ define <16 x float> @test_smfmac_f32_32x32x64_bf8_fp8__sgpr(<4 x i32> inreg %arg
 ; GISEL-NEXT:    v_mov_b32_e32 v18, v7
 ; GISEL-NEXT:    v_mov_b32_e32 v19, v8
 ; GISEL-NEXT:    v_mov_b32_e32 v20, v9
-; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b32_e32 v21, v10
 ; GISEL-NEXT:    v_mov_b32_e32 v0, s24
 ; GISEL-NEXT:    v_mov_b32_e32 v1, s25
@@ -2786,6 +2785,7 @@ define <16 x float> @test_smfmac_f32_32x32x64_bf8_fp8__sgpr(<4 x i32> inreg %arg
 ; GISEL-NEXT:    v_mov_b32_e32 v3, s27
 ; GISEL-NEXT:    v_mov_b32_e32 v4, s28
 ; GISEL-NEXT:    v_mov_b32_e32 v5, s29
+; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[20:21]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[16:17]
@@ -2868,8 +2868,8 @@ define amdgpu_kernel void @test_smfmac_f32_32x32x64_fp8_bf8__vgpr(ptr addrspace(
 ; GISEL-NEXT:    s_waitcnt lgkmcnt(0)
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[10:11]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[8:9]
-; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b32_e32 v28, s2
+; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[20:21], s[16:17]
 ; GISEL-NEXT:    v_mov_b64_e32 v[18:19], s[14:15]
 ; GISEL-NEXT:    v_mov_b64_e32 v[16:17], s[12:13]
@@ -3151,7 +3151,6 @@ define <16 x float> @test_smfmac_f32_32x32x64_fp8_bf8__sgpr(<4 x i32> inreg %arg
 ; GISEL-NEXT:    v_mov_b32_e32 v18, v7
 ; GISEL-NEXT:    v_mov_b32_e32 v19, v8
 ; GISEL-NEXT:    v_mov_b32_e32 v20, v9
-; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b32_e32 v21, v10
 ; GISEL-NEXT:    v_mov_b32_e32 v0, s24
 ; GISEL-NEXT:    v_mov_b32_e32 v1, s25
@@ -3159,6 +3158,7 @@ define <16 x float> @test_smfmac_f32_32x32x64_fp8_bf8__sgpr(<4 x i32> inreg %arg
 ; GISEL-NEXT:    v_mov_b32_e32 v3, s27
 ; GISEL-NEXT:    v_mov_b32_e32 v4, s28
 ; GISEL-NEXT:    v_mov_b32_e32 v5, s29
+; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[20:21]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[16:17]
@@ -3241,8 +3241,8 @@ define amdgpu_kernel void @test_smfmac_f32_32x32x64_fp8_fp8__vgpr(ptr addrspace(
 ; GISEL-NEXT:    s_waitcnt lgkmcnt(0)
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[10:11]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[8:9]
-; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b32_e32 v28, s2
+; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[20:21], s[16:17]
 ; GISEL-NEXT:    v_mov_b64_e32 v[18:19], s[14:15]
 ; GISEL-NEXT:    v_mov_b64_e32 v[16:17], s[12:13]
@@ -3524,7 +3524,6 @@ define <16 x float> @test_smfmac_f32_32x32x64_fp8_fp8__sgpr(<4 x i32> inreg %arg
 ; GISEL-NEXT:    v_mov_b32_e32 v18, v7
 ; GISEL-NEXT:    v_mov_b32_e32 v19, v8
 ; GISEL-NEXT:    v_mov_b32_e32 v20, v9
-; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b32_e32 v21, v10
 ; GISEL-NEXT:    v_mov_b32_e32 v0, s24
 ; GISEL-NEXT:    v_mov_b32_e32 v1, s25
@@ -3532,6 +3531,7 @@ define <16 x float> @test_smfmac_f32_32x32x64_fp8_fp8__sgpr(<4 x i32> inreg %arg
 ; GISEL-NEXT:    v_mov_b32_e32 v3, s27
 ; GISEL-NEXT:    v_mov_b32_e32 v4, s28
 ; GISEL-NEXT:    v_mov_b32_e32 v5, s29
+; GISEL-NEXT:    v_mov_b64_e32 v[28:29], s[22:23]
 ; GISEL-NEXT:    v_mov_b64_e32 v[26:27], s[20:21]
 ; GISEL-NEXT:    v_mov_b64_e32 v[24:25], s[18:19]
 ; GISEL-NEXT:    v_mov_b64_e32 v[22:23], s[16:17]

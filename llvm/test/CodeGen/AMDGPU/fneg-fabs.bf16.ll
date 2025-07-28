@@ -673,9 +673,9 @@ define amdgpu_kernel void @fneg_fabs_v4bf16(ptr addrspace(1) %out, <4 x bfloat> 
 ; VI-NEXT:    s_lshl_b32 s4, s4, 16
 ; VI-NEXT:    s_or_b32 s3, s3, s5
 ; VI-NEXT:    s_or_b32 s2, s2, s4
-; VI-NEXT:    v_mov_b32_e32 v3, s1
 ; VI-NEXT:    v_mov_b32_e32 v0, s2
 ; VI-NEXT:    v_mov_b32_e32 v1, s3
+; VI-NEXT:    v_mov_b32_e32 v3, s1
 ; VI-NEXT:    v_mov_b32_e32 v2, s0
 ; VI-NEXT:    flat_store_dwordx2 v[2:3], v[0:1]
 ; VI-NEXT:    s_endpgm
